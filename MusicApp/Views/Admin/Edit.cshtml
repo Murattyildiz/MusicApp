@@ -1,0 +1,32 @@
+﻿@model MusicApp.Models.Song
+
+@{
+    ViewData["Title"] = "Şarkı Düzenle";
+}
+
+<h2>Şarkı Düzenle</h2>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Edit">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div>
+        <label for="Title">Başlık</label>
+        <input type="text" id="Title" name="Title" value="@Model.Title" required />
+    </div>
+    <div>
+        <label for="Artist">Sanatçı</label>
+        <input type="text" id="Artist" name="Artist" value="@Model.Artist" required />
+    </div>
+    <div>
+        <label for="Album">Albüm</label>
+        <input type="text" id="Album" name="Album" value="@Model.Album" />
+    </div>
+    <div>
+        <label for="Genre">Tür</label>
+        <input type="text" id="Genre" name="Genre" value="@Model.Genre" />
+    </div>
+    <div>
+        <label for="File">Dosya</label>
+        <input type="file" id="File" name="File" />
+    </div>
+    <button type="submit">Kaydet</button>
+</form>

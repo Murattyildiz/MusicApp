@@ -1,0 +1,45 @@
+﻿@model MusicApp.Models.User
+
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<h2>Profilim</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p style="color: green">@ViewBag.Message</p>
+}
+
+@if (ViewBag.Error != null)
+{
+    <p style="color: red">@ViewBag.Error</p>
+}
+
+<h3>Bilgilerim</h3>
+<form method="post" asp-controller="User" asp-action="UpdateProfile">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div>
+        <label for="username">Kullanıcı Adı:</label>
+        <input type="text" name="username" id="username" value="@Model.Username" required />
+    </div>
+    <div>
+        <label for="email">E-posta:</label>
+        <input type="email" name="email" id="email" value="@Model.Email" required />
+    </div>
+    <button type="submit">Bilgileri Güncelle</button>
+</form>
+
+<h3>Şifre Güncelle</h3>
+<form method="post" asp-controller="User" asp-action="UpdatePassword">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div>
+        <label for="currentPassword">Mevcut Şifre:</label>
+        <input type="password" name="currentPassword" id="currentPassword" required />
+    </div>
+    <div>
+        <label for="newPassword">Yeni Şifre:</label>
+        <input type="password" name="newPassword" id="newPassword" required />
+    </div>
+    <button type="submit">Şifreyi Güncelle</button>
+</form>

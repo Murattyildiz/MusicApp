@@ -1,0 +1,31 @@
+﻿@model MusicApp.Models.Song
+
+@{
+    ViewData["Title"] = "Yeni Şarkı Ekle";
+}
+
+<h2>Yeni Şarkı Ekle</h2>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Create">
+    <div>
+        <label for="Title">Başlık</label>
+        <input type="text" id="Title" name="Title" required />
+    </div>
+    <div>
+        <label for="Artist">Sanatçı</label>
+        <input type="text" id="Artist" name="Artist" required />
+    </div>
+    <div>
+        <label for="Album">Albüm</label>
+        <input type="text" id="Album" name="Album" />
+    </div>
+    <div>
+        <label for="Genre">Tür</label>
+        <input type="text" id="Genre" name="Genre" />
+    </div>
+    <div>
+        <label for="File">Dosya</label>
+        <input type="file" id="File" name="File" required />
+    </div>
+    <button type="submit">Ekle</button>
+</form>

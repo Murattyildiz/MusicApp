@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MusicApp.Models.Playlist>
+
+@{
+    ViewData["Title"] = "Çalma Listelerim";
+}
+
+<h2>Çalma Listelerim</h2>
+
+<form method="post" asp-controller="Playlist" asp-action="Create">
+    <input type="text" name="playlistName" placeholder="Yeni Çalma Listesi Adı" required />
+    <button type="submit">Oluştur</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Çalma Listesi Adı</th>
+            <th>Detaylar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var playlist in Model)
+        {
+            <tr>
+                <td>@playlist.Name</td>
+                <td>
+                    <a asp-controller="Playlist" asp-action="Details" asp-route-id="@playlist.Id">Detaylar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

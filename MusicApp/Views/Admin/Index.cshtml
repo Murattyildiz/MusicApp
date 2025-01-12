@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MusicApp.Models.Song>
+
+@{
+    ViewData["Title"] = "Şarkılar Yönetimi";
+}
+
+<h2>Şarkılar Yönetimi</h2>
+
+<a class="btn btn-primary mb-3" asp-controller="Admin" asp-action="Create">Yeni Şarkı Ekle</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Sanatçı</th>
+            <th>Albüm</th>
+            <th>Tür</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>@song.Title</td>
+                <td>@song.Artist</td>
+                <td>@song.Album</td>
+                <td>@song.Genre</td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Admin" asp-action="Edit" asp-route-id="@song.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-controller="Admin" asp-action="Delete" asp-route-id="@song.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
