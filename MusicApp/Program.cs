@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using MusicApp.Data;
+using MusicApp.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Diðer servis eklemeleriniz...
-builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddHttpContextAccessor(); // HttpContext'e eriþim için gerekli
 
 // Veritabaný baðlantýsýný yapýlandýr
 builder.Services.AddDbContext<MusicAppDbContext>(options =>
@@ -38,17 +37,15 @@ app.UseStaticFiles();
 
 // Middleware sýralamasý
 app.UseRouting();
-
-// Session middleware
-app.UseSession();
-
-// Authorization (Yetkilendirme için gerekli)
-app.UseAuthorization();
+app.UseSession(); // Session middleware
+app.UseAuthorization(); // Yetkilendirme
 
 // Varsayýlan rotayý ayarla
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=login}/{id?}");
+    pattern: "{controller=Login}/{action=Login}/{id?}");
+
+
 
 // Uygulamayý çalýþtýr
 app.Run();

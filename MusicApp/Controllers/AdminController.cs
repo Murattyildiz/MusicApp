@@ -22,13 +22,13 @@ namespace MusicApp.Controllers
             var role = HttpContext.Session.GetString("Role");
             if (role != "Admin")
             {
-                context.Result = RedirectToAction("Index", "Home");
+                context.Result = RedirectToAction("Login", "Login");
             }
 
             base.OnActionExecuting(context);
         }
 
-        // Şarkıların Listelendiği Sayfa
+        // Admin Paneli Ana Sayfası
         public IActionResult Index()
         {
             var songs = _context.Songs.ToList();
@@ -54,6 +54,7 @@ namespace MusicApp.Controllers
 
             _context.Songs.Add(song);
             _context.SaveChanges();
+            TempData["Message"] = "Şarkı başarıyla eklendi.";
             return RedirectToAction("Index");
         }
 
@@ -87,6 +88,7 @@ namespace MusicApp.Controllers
                 }
 
                 _context.SaveChanges();
+                TempData["Message"] = "Şarkı başarıyla güncellendi.";
             }
 
             return RedirectToAction("Index");
@@ -101,7 +103,7 @@ namespace MusicApp.Controllers
 
             _context.Songs.Remove(song);
             _context.SaveChanges();
-
+            TempData["Message"] = "Şarkı başarıyla silindi.";
             return RedirectToAction("Index");
         }
 
@@ -121,9 +123,22 @@ namespace MusicApp.Controllers
             {
                 user.IsActive = !user.IsActive;
                 _context.SaveChanges();
+                TempData["Message"] = $"Kullanıcı {user.Username} {(user.IsActive ? "aktif" : "pasif")} duruma getirildi.";
             }
 
             return RedirectToAction("ManageUsers");
+        }
+
+        // Profil Sayfası
+        public IActionResult Profile()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var adminUser = _context.Users.SingleOrDefault(u => u.Username == username);
+
+            if (adminUser == null)
+                return RedirectToAction("Login", "Login");
+
+            return View(adminUser);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<MusicApp.Models.User>
 
-<h2>Kullanıcı Yönetimi</h2>
+@{
+    ViewData["Title"] = "Kullanıcı Yönetimi";
+    Layout = "_AdminLayout"; // Admin'e özel bir layout kullanıyorsanız, bunu belirtin.
+}
 
 <table class="table">
     <thead>
