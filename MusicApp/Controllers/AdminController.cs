@@ -42,7 +42,7 @@ namespace MusicApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Song song, IFormFile file)
+        public IActionResult Create(Song song, IFormFile file, IFormFile coverImage)
         {
             if (file != null && file.Length > 0)
             {
@@ -52,24 +52,35 @@ namespace MusicApp.Controllers
                 song.FilePath = $"Sarkilar/{file.FileName}";
             }
 
+            if (coverImage != null && coverImage.Length > 0)
+            {
+                var coverPath = Path.Combine("wwwroot/Images/Covers", coverImage.FileName);
+                using var stream = new FileStream(coverPath, FileMode.Create);
+                coverImage.CopyTo(stream);
+                song.CoverImagePath = $"Images/Covers/{coverImage.FileName}";
+            }
+
             _context.Songs.Add(song);
             _context.SaveChanges();
-            TempData["Message"] = "Şarkı başarıyla eklendi.";
             return RedirectToAction("Index");
         }
 
-        // Şarkı Düzenleme Sayfası
+        // Düzenleme Sayfasını Getir (GET)
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var song = _context.Songs.Find(id);
             if (song == null)
-                return NotFound();
+            {
+                return NotFound(); // Şarkı bulunamazsa 404 döndür
+            }
 
-            return View(song);
+            return View(song); // Şarkıyı düzenleme formuna gönder
         }
 
+        // Düzenleme İşlemini Kaydet (POST)
         [HttpPost]
-        public IActionResult Edit(Song song, IFormFile file)
+        public IActionResult Edit(Song song, IFormFile file, IFormFile coverImage)
         {
             var existingSong = _context.Songs.Find(song.Id);
             if (existingSong != null)
@@ -78,7 +89,9 @@ namespace MusicApp.Controllers
                 existingSong.Artist = song.Artist;
                 existingSong.Album = song.Album;
                 existingSong.Genre = song.Genre;
+                existingSong.Lyrics = song.Lyrics;
 
+                // Şarkı dosyasını güncelle
                 if (file != null && file.Length > 0)
                 {
                     var filePath = Path.Combine("wwwroot/Sarkilar", file.FileName);
@@ -87,12 +100,21 @@ namespace MusicApp.Controllers
                     existingSong.FilePath = $"Sarkilar/{file.FileName}";
                 }
 
-                _context.SaveChanges();
-                TempData["Message"] = "Şarkı başarıyla güncellendi.";
+                // Kapak fotoğrafını güncelle
+                if (coverImage != null && coverImage.Length > 0)
+                {
+                    var coverPath = Path.Combine("wwwroot/Images/Covers", coverImage.FileName);
+                    using var stream = new FileStream(coverPath, FileMode.Create);
+                    coverImage.CopyTo(stream);
+                    existingSong.CoverImagePath = $"Images/Covers/{coverImage.FileName}";
+                }
+
+                _context.SaveChanges(); // Değişiklikleri kaydet
             }
 
             return RedirectToAction("Index");
         }
+
 
         // Şarkı Silme
         public IActionResult Delete(int id)

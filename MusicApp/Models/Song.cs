@@ -8,5 +8,7 @@
         public string Album { get; set; }
         public string Genre { get; set; }
         public string FilePath { get; set; } // Dosya yolu
+        public string CoverImagePath { get; set; } // Kapak fotoğrafı yolu
+        public string Lyrics { get; set; } // Şarkı sözleri
     }
 }

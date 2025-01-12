@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Images\Covers\" />
     <Folder Include="wwwroot\Sarkilar\" />
   </ItemGroup>
 

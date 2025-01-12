@@ -5,28 +5,64 @@
     Layout = "_AdminLayout";
 }
 
-<h2>Yeni Şarkı Ekle</h2>
+<h2 class="mb-4">@ViewData["Title"]</h2>
 
-<form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Create">
-    <div>
-        <label for="Title">Başlık</label>
-        <input type="text" id="Title" name="Title" required />
+<form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Create" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="Title" class="form-label">Başlık</label>
+        <input type="text" id="Title" name="Title" class="form-control" required />
+        <div class="invalid-feedback">Başlık alanı zorunludur.</div>
     </div>
-    <div>
-        <label for="Artist">Sanatçı</label>
-        <input type="text" id="Artist" name="Artist" required />
+
+    <div class="mb-3">
+        <label for="Artist" class="form-label">Sanatçı</label>
+        <input type="text" id="Artist" name="Artist" class="form-control" required />
+        <div class="invalid-feedback">Sanatçı alanı zorunludur.</div>
     </div>
-    <div>
-        <label for="Album">Albüm</label>
-        <input type="text" id="Album" name="Album" />
+
+    <div class="mb-3">
+        <label for="Album" class="form-label">Albüm</label>
+        <input type="text" id="Album" name="Album" class="form-control" />
     </div>
-    <div>
-        <label for="Genre">Tür</label>
-        <input type="text" id="Genre" name="Genre" />
+
+    <div class="mb-3">
+        <label for="Genre" class="form-label">Tür</label>
+        <input type="text" id="Genre" name="Genre" class="form-control" />
     </div>
-    <div>
-        <label for="File">Dosya</label>
-        <input type="file" id="File" name="File" required />
+
+    <div class="mb-3">
+        <label for="Lyrics" class="form-label">Şarkı Sözleri</label>
+        <textarea id="Lyrics" name="Lyrics" class="form-control" rows="5"></textarea>
     </div>
-    <button type="submit">Ekle</button>
+
+    <div class="mb-3">
+        <label for="File" class="form-label">Şarkı Dosyası</label>
+        <input type="file" id="File" name="File" class="form-control" required />
+        <div class="invalid-feedback">Lütfen bir dosya yükleyin.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="CoverImage" class="form-label">Kapak Fotoğrafı</label>
+        <input type="file" id="CoverImage" name="CoverImage" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Ekle</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
 </form>
+
+<script>
+    // Form doğrulama (Bootstrap)
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>

@@ -1,0 +1,23 @@
+﻿@model MusicApp.Models.Song
+
+@{
+    ViewData["Title"] = "Şarkı Detayları";
+}
+
+<div class="card mt-3">
+    <img src="~/@Model.CoverImagePath" alt="@Model.Title" class="card-img-top" style="max-height: 400px;" />
+    <div class="card-body">
+        <h2>@Model.Title</h2>
+        <p><strong>Sanatçı:</strong> @Model.Artist</p>
+        <p><strong>Albüm:</strong> @Model.Album</p>
+        <p><strong>Tür:</strong> @Model.Genre</p>
+        <p><strong>Şarkı Sözleri:</strong></p>
+        <pre>@Model.Lyrics</pre>
+        <audio controls>
+            <source src="~/@Model.FilePath" type="audio/mpeg">
+            Tarayıcınız bu sesi desteklemiyor.
+        </audio>
+        <br />
+        <a asp-action="Index" class="btn btn-primary mt-3">Geri Dön</a>
+    </div>
+</div>
