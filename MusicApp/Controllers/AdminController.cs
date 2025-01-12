@@ -16,7 +16,7 @@ namespace MusicApp.Controllers
             _context = context;
         }
 
-        // Action çalıştırılmadan önce kontrol
+        // Action çalıştırılmadan önce admin kontrolü
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var role = HttpContext.Session.GetString("Role");
@@ -57,7 +57,7 @@ namespace MusicApp.Controllers
             return RedirectToAction("Index");
         }
 
-        // Şarkı Düzenleme
+        // Şarkı Düzenleme Sayfası
         public IActionResult Edit(int id)
         {
             var song = _context.Songs.Find(id);
@@ -103,6 +103,27 @@ namespace MusicApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        // Kullanıcıları Listele
+        public IActionResult ManageUsers()
+        {
+            var users = _context.Users.ToList();
+            return View(users);
+        }
+
+        // Kullanıcı Aktiflik Durumunu Değiştir
+        [HttpPost]
+        public IActionResult ToggleUserStatus(int userId)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
+            if (user != null)
+            {
+                user.IsActive = !user.IsActive;
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("ManageUsers");
         }
     }
 }

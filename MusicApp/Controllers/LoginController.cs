@@ -9,12 +9,10 @@ namespace MusicApp.Controllers
     public class LoginController : Controller
     {
         private readonly MusicAppDbContext _context;
-        private readonly IConfiguration _configuration;
 
-        public LoginController(MusicAppDbContext context, IConfiguration configuration)
+        public LoginController(MusicAppDbContext context)
         {
             _context = context;
-            _configuration = configuration;
         }
 
         // Giriş Sayfası
@@ -30,9 +28,9 @@ namespace MusicApp.Controllers
 
             if (user != null && PasswordHelper.VerifyPassword(password, user.Password)) // Şifre doğrulama
             {
-                if (!user.IsEmailConfirmed)
+                if (!user.IsActive)
                 {
-                    ViewBag.Error = "Lütfen hesabınızı onaylayın. E-postanızı kontrol edin.";
+                    ViewBag.Error = "Hesabınız şu anda aktif değil. Lütfen sistem yöneticisi ile iletişime geçin.";
                     return View();
                 }
 
@@ -74,104 +72,23 @@ namespace MusicApp.Controllers
             {
                 Username = username,
                 Email = email,
-                Password = hashedPassword, // Hashli şifreyi kaydet
+                Password = hashedPassword,
                 Role = "User",
-                IsEmailConfirmed = false // E-posta onaylanana kadar false
+                IsActive = true // Varsayılan olarak aktif
             };
 
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            // Hesap onay e-postası gönder
-            SendAccountConfirmationEmail(user);
-
-            ViewBag.Message = "Hesabınız oluşturuldu. Lütfen e-postanızı kontrol edin.";
-            return View();
-        }
-
-        // Hesap Onaylama
-        public IActionResult ConfirmEmail(int userId)
-        {
-            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
-            if (user != null)
-            {
-                user.IsEmailConfirmed = true;
-                _context.SaveChanges();
-                ViewBag.Message = "E-postanız başarıyla onaylandı. Şimdi giriş yapabilirsiniz.";
-            }
-            else
-            {
-                ViewBag.Error = "Geçersiz onay bağlantısı.";
-            }
-
-            return View();
-        }
-
-        // Şifremi Unuttum
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult ForgotPassword(string email)
-        {
-            var user = _context.Users.SingleOrDefault(u => u.Email == email);
-            if (user != null)
-            {
-                var resetLink = Url.Action("ResetPassword", "Login", new { userId = user.Id }, Request.Scheme);
-                var emailService = new EmailService(_configuration);
-                emailService.SendEmail(user.Email, "Şifre Sıfırlama", $"Şifrenizi sıfırlamak için <a href='{resetLink}'>buraya tıklayın</a>.");
-            }
-
-            ViewBag.Message = "Eğer e-posta adresiniz kayıtlı ise şifre sıfırlama bağlantısı gönderildi.";
-            return View();
-        }
-
-        // Şifre Sıfırlama Sayfası
-        public IActionResult ResetPassword(int userId)
-        {
-            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
-            if (user == null)
-            {
-                ViewBag.Error = "Geçersiz bağlantı.";
-                return View();
-            }
-
-            return View(user);
-        }
-
-        [HttpPost]
-        public IActionResult ResetPassword(int userId, string newPassword)
-        {
-            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
-            if (user != null)
-            {
-                user.Password = PasswordHelper.HashPassword(newPassword);
-                _context.SaveChanges();
-                ViewBag.Message = "Şifreniz başarıyla sıfırlandı. Giriş yapabilirsiniz.";
-            }
-            else
-            {
-                ViewBag.Error = "Geçersiz bağlantı.";
-            }
-
-            return View();
+            ViewBag.Message = "Hesabınız başarıyla oluşturuldu. Giriş yapabilirsiniz.";
+            return RedirectToAction("Login");
         }
 
         // Çıkış Yap
         public IActionResult Logout()
         {
             HttpContext.Session.Clear(); // Oturum bilgisini temizle
-            return RedirectToAction("Login", "Login");
-        }
-
-        // Hesap Onay E-posta Gönderimi
-        private void SendAccountConfirmationEmail(User user)
-        {
-            var confirmationLink = Url.Action("ConfirmEmail", "Login", new { userId = user.Id }, Request.Scheme);
-            var emailService = new EmailService(_configuration);
-            emailService.SendEmail(user.Email, "Hesap Onaylama", $"Lütfen hesabınızı onaylamak için <a href='{confirmationLink}'>buraya tıklayın</a>.");
+            return RedirectToAction("Login");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Giriş Yap";
 }
 
 <h2>Giriş Yap</h2>
@@ -9,14 +9,21 @@
     <p style="color:red">@ViewBag.Error</p>
 }
 
-<form method="post">
-    <div>
-        <label for="username">Kullanıcı Adı:</label>
-        <input type="text" name="username" id="username" required />
+<form method="post" asp-action="Login">
+    <div class="form-group">
+        <label for="username">Kullanıcı Adı</label>
+        <input type="text" id="username" name="username" class="form-control" required />
     </div>
-    <div>
-        <label for="password">Şifre:</label>
-        <input type="password" name="password" id="password" required />
+    <div class="form-group">
+        <label for="password">Şifre</label>
+        <input type="password" id="password" name="password" class="form-control" required />
     </div>
-    <button type="submit">Giriş Yap</button>
+    <button type="submit" class="btn btn-primary mt-2">Giriş Yap</button>
 </form>
+
+<p>
+    <a asp-action="Register">Hesabınız yok mu? Kayıt olun.</a>
+</p>
+<p>
+    <a asp-action="ForgotPassword">Şifrenizi mi unuttunuz?</a>
+</p>
