@@ -4,42 +4,45 @@
     ViewData["Title"] = "Profil";
 }
 
-<h2>Profilim</h2>
+<!-- CSS Bağlantısı -->
+<link rel="stylesheet" href="/css/profile.css">
+
+<h2 class="profile-title">Profilim</h2>
 
 @if (ViewBag.Message != null)
 {
-    <p style="color: green">@ViewBag.Message</p>
+    <p class="success-message">@ViewBag.Message</p>
 }
 
 @if (ViewBag.Error != null)
 {
-    <p style="color: red">@ViewBag.Error</p>
+    <p class="error-message">@ViewBag.Error</p>
 }
 
-<h3>Bilgilerim</h3>
-<form method="post" asp-controller="User" asp-action="UpdateProfile">
+<h3 class="section-title">Bilgilerim</h3>
+<form method="post" asp-controller="User" asp-action="UpdateProfile" class="profile-form">
     <input type="hidden" name="id" value="@Model.Id" />
-    <div>
+    <div class="form-group">
         <label for="username">Kullanıcı Adı:</label>
         <input type="text" name="username" id="username" value="@Model.Username" required />
     </div>
-    <div>
+    <div class="form-group">
         <label for="email">E-posta:</label>
         <input type="email" name="email" id="email" value="@Model.Email" required />
     </div>
-    <button type="submit">Bilgileri Güncelle</button>
+    <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
 </form>
 
-<h3>Şifre Güncelle</h3>
-<form method="post" asp-controller="User" asp-action="UpdatePassword">
+<h3 class="section-title">Şifre Güncelle</h3>
+<form method="post" asp-controller="User" asp-action="UpdatePassword" class="password-form">
     <input type="hidden" name="id" value="@Model.Id" />
-    <div>
+    <div class="form-group">
         <label for="currentPassword">Mevcut Şifre:</label>
         <input type="password" name="currentPassword" id="currentPassword" required />
     </div>
-    <div>
+    <div class="form-group">
         <label for="newPassword">Yeni Şifre:</label>
         <input type="password" name="newPassword" id="newPassword" required />
     </div>
-    <button type="submit">Şifreyi Güncelle</button>
+    <button type="submit" class="btn btn-primary">Şifreyi Güncelle</button>
 </form>

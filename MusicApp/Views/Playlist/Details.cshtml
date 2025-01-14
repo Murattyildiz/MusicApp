@@ -4,31 +4,41 @@
     ViewData["Title"] = ViewBag.Playlist.Name + " - Detaylar";
 }
 
-<h2>@ViewBag.Playlist.Name</h2>
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/playlist-details.css">
 
-<table>
-    <thead>
-        <tr>
-            <th>Başlık</th>
-            <th>Sanatçı</th>
-            <th>Albüm</th>
-            <th>Dinle</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var song in Model)
-        {
+<h2 class="playlist-title">@ViewBag.Playlist.Name</h2>
+
+@if (!Model.Any())
+{
+    <p class="no-songs">Bu çalma listesinde henüz şarkı yok.</p>
+}
+else
+{
+    <table class="playlist-table">
+        <thead>
             <tr>
-                <td>@song.Title</td>
-                <td>@song.Artist</td>
-                <td>@song.Album</td>
-                <td>
-                    <audio controls>
-                        <source src="~/@song.FilePath" type="audio/mpeg">
-                        Tarayıcınız bu sesi desteklemiyor.
-                    </audio>
-                </td>
+                <th>Başlık</th>
+                <th>Sanatçı</th>
+                <th>Albüm</th>
+                <th>Dinle</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var song in Model)
+            {
+                <tr>
+                    <td>@song.Title</td>
+                    <td>@song.Artist</td>
+                    <td>@song.Album</td>
+                    <td>
+                        <audio controls>
+                            <source src="~/@song.FilePath" type="audio/mpeg">
+                            Tarayıcınız bu sesi desteklemiyor.
+                        </audio>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

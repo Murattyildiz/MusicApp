@@ -4,14 +4,19 @@
     ViewData["Title"] = "Çalma Listelerim";
 }
 
-<h2>Çalma Listelerim</h2>
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/playlists.css">
 
-<form method="post" asp-controller="Playlist" asp-action="Create">
-    <input type="text" name="playlistName" placeholder="Yeni Çalma Listesi Adı" required />
-    <button type="submit">Oluştur</button>
-</form>
+<h2 class="page-title">Çalma Listelerim</h2>
 
-<table>
+<div class="create-playlist-form">
+    <form method="post" asp-controller="Playlist" asp-action="Create">
+        <input type="text" name="playlistName" placeholder="Yeni Çalma Listesi Adı" class="form-input" required />
+        <button type="submit" class="btn btn-primary">Oluştur</button>
+    </form>
+</div>
+
+<table class="playlists-table">
     <thead>
         <tr>
             <th>Çalma Listesi Adı</th>
@@ -24,7 +29,7 @@
             <tr>
                 <td>@playlist.Name</td>
                 <td>
-                    <a asp-controller="Playlist" asp-action="Details" asp-route-id="@playlist.Id">Detaylar</a>
+                    <a asp-controller="Playlist" asp-action="Details" asp-route-id="@playlist.Id" class="btn btn-secondary">Detaylar</a>
                 </td>
             </tr>
         }
