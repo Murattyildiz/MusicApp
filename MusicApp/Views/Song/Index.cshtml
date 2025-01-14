@@ -46,7 +46,7 @@
                 <td>@song.Plays</td> <!-- Dinlenme sayısını burada gösteriyoruz -->
                 <!-- Dinle -->
                 <td>
-                    <audio controls>
+                    <audio controls onplay="incrementPlays(@song.Id)">
                         <source src="~/@song.FilePath" type="audio/mpeg">
                         Tarayıcınız bu sesi desteklemiyor.
                     </audio>
@@ -78,3 +78,21 @@
         }
     </tbody>
 </table>
+
+<script>
+    // Dinlenme sayısını artırmak için Ajax çağrısı
+    function incrementPlays(songId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("IncrementPlays", "Song")',
+            data: { songId: songId },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Dinlenme sayısı artırıldı.");
+                } else {
+                    console.log("Bir hata oluştu.");
+                }
+            }
+        });
+    }
+</script>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicApp.Data;
-using MusicApp.Models; // Song modelini ekledik
+using MusicApp.Models;
 using System.Linq;
 
 namespace MusicApp.Controllers
@@ -31,15 +31,6 @@ namespace MusicApp.Controllers
             // Şarkıları getir
             var songs = _context.Songs.ToList();
 
-            // Dinlenme sayısını artırıyoruz
-            foreach (var song in songs)
-            {
-                song.Plays += 1;  // Dinlenme sayısını artır
-            }
-
-            // Veritabanına kaydediyoruz
-            _context.SaveChanges();
-
             // Kullanıcıya ait çalma listelerini getir
             var playlists = _context.Playlists.Where(p => p.UserId == user.Id).ToList();
 
@@ -59,11 +50,21 @@ namespace MusicApp.Controllers
                 return NotFound();
             }
 
-            // Dinlenme sayısını artırıyoruz
-            song.Plays += 1;  // Dinlenme sayısını bir artır
-            _context.SaveChanges();  // Veritabanına kaydet
-
             return View(song);
+        }
+
+        // Ajax ile Dinlenme Sayısını Artırma
+        [HttpPost]
+        public IActionResult IncrementPlays(int songId)
+        {
+            var song = _context.Songs.SingleOrDefault(s => s.Id == songId);
+            if (song != null)
+            {
+                song.Plays += 1;  // Dinlenme sayısını artır
+                _context.SaveChanges();  // Veritabanına kaydet
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }
