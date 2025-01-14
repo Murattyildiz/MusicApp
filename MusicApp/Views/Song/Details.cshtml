@@ -4,8 +4,11 @@
     ViewData["Title"] = "Şarkı Detayları";
 }
 
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/song-details.css">
+
 <div class="card mt-3">
-    <img src="~/@Model.CoverImagePath" alt="@Model.Title" class="card-img-top" style="max-height: 400px;" />
+    <img src="~/@Model.CoverImagePath" alt="@Model.Title" class="card-img-top" />
     <div class="card-body">
         <h2>@Model.Title</h2>
         <p><strong>Sanatçı:</strong> @Model.Artist</p>

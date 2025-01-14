@@ -4,9 +4,12 @@
     ViewData["Title"] = "Şarkılar";
 }
 
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/songs.css">
+
 <h2>Şarkılar</h2>
 
-<table class="table">
+<table class="songs-table">
     <thead>
         <tr>
             <th>Kapak Fotoğrafı</th>
@@ -24,7 +27,7 @@
             <tr>
                 <td>
                     <a asp-controller="Song" asp-action="Details" asp-route-id="@song.Id">
-                        <img src="~/@song.CoverImagePath" alt="@song.Title" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                        <img src="~/@song.CoverImagePath" alt="@song.Title" class="cover-image" />
                     </a>
                 </td>
                 <td>@song.Title</td>
@@ -45,7 +48,7 @@
                 <td>
                     <form method="post" asp-controller="Playlist" asp-action="AddSong">
                         <input type="hidden" name="songId" value="@song.Id" />
-                        <select name="playlistId" required>
+                        <select name="playlistId" required class="playlist-select">
                             <option value="">Çalma Listesi Seç</option>
                             @foreach (var playlist in ViewBag.Playlists as IEnumerable<MusicApp.Models.Playlist>)
                             {
@@ -59,4 +62,3 @@
         }
     </tbody>
 </table>
-

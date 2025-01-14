@@ -4,15 +4,18 @@
     ViewData["Title"] = "Favorilerim";
 }
 
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/favorites.css">
+
 <h2>Favorilerim</h2>
 
 @if (!Model.Any())
 {
-    <p>Henüz favorilere eklenmiş bir şarkınız yok.</p>
+    <p class="no-favorites">Henüz favorilere eklenmiş bir şarkınız yok.</p>
 }
 else
 {
-    <table>
+    <table class="favorites-table">
         <thead>
             <tr>
                 <th>Başlık</th>
@@ -38,7 +41,7 @@ else
                     <td>
                         <form method="post" asp-controller="Favorite" asp-action="RemoveFromFavorites">
                             <input type="hidden" name="favoriteId" value="@song.Id" />
-                            <button type="submit">Kaldır</button>
+                            <button type="submit" class="btn-remove">Kaldır</button>
                         </form>
                     </td>
                 </tr>

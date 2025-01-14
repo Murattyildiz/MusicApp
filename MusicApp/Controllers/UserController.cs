@@ -20,11 +20,11 @@ namespace MusicApp.Controllers
             var username = HttpContext.Session.GetString("Username");
             if (string.IsNullOrEmpty(username))
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Login", "Login");
             }
 
             var user = _context.Users.SingleOrDefault(u => u.Username == username);
-            if (user == null) return RedirectToAction("Index", "Login");
+            if (user == null) return RedirectToAction("Login", "Login");
 
             return View(user);
         }
