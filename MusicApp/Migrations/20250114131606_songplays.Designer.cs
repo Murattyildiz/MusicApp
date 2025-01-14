@@ -11,8 +11,8 @@ using MusicApp.Data;
 namespace MusicApp.Migrations
 {
     [DbContext(typeof(MusicAppDbContext))]
-    [Migration("20250112141756_addCoverImagePath")]
-    partial class addCoverImagePath
+    [Migration("20250114131606_songplays")]
+    partial class songplays
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,6 +123,9 @@ namespace MusicApp.Migrations
                     b.Property<string>("Lyrics")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Plays")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()

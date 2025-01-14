@@ -55,11 +55,11 @@ input {
     font-size: 14px;
 }
 
-    input:focus {
-        outline: none;
-        border-color: #80bdff;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-    }
+input:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
 
 button {
     padding: 10px;
@@ -70,9 +70,9 @@ button {
     transition: background-color 0.3s;
 }
 
-    button:hover {
-        opacity: 0.9;
-    }
+button:hover {
+    opacity: 0.9;
+}
 
 .btn-primary {
     width: 100%;
@@ -80,20 +80,20 @@ button {
     color: white;
 }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
+.btn-primary:hover {
+    background-color: #0056b3;
+}
 
 .redirect-link {
     text-align: center;
     margin-top: 15px;
 }
 
-    .redirect-link a {
-        color: #007bff;
-        text-decoration: none;
-    }
+.redirect-link a {
+    color: #007bff;
+    text-decoration: none;
+}
 
-        .redirect-link a:hover {
-            text-decoration: underline;
-        }
+.redirect-link a:hover {
+    text-decoration: underline;
+}

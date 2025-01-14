@@ -1,32 +1,31 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Models;
+using MusicApp.Data; // DbContext'in doðru import edilmesi gerekir
+using System.Linq;
 
 namespace MusicApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly MusicAppDbContext _context;  // DbContext'i buraya ekliyoruz
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MusicAppDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
+            // En çok dinlenen þarkýlarý alýyoruz (Plays'e göre sýralama)
+            var mostPlayedSongs = _context.Songs
+                                          .OrderByDescending(s => s.Plays)  // Plays sayýsýna göre azalan sýralama
+                                          .Take(5)  // Ýlk 5 þarkýyý alýyoruz
+                                          .ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // View'a gönderilecek model
+            return View(mostPlayedSongs);  // `mostPlayedSongs` ile view'ý döndürüyoruz
         }
     }
 }

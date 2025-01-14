@@ -10,5 +10,8 @@
         public string FilePath { get; set; } // Dosya yolu
         public string CoverImagePath { get; set; } // Kapak fotoğrafı yolu
         public string Lyrics { get; set; } // Şarkı sözleri
+
+        // Dinlenme sayısını tutan alan
+        public int Plays { get; set; }  // Şarkının dinlenme sayısı
     }
 }

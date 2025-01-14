@@ -8,18 +8,29 @@
 <link rel="stylesheet" href="/css/song-details.css">
 
 <div class="card mt-3">
-    <img src="~/@Model.CoverImagePath" alt="@Model.Title" class="card-img-top" />
+    <!-- Kapak fotoğrafı -->
+    <img src="~/@Model.CoverImagePath" alt="@Model.Title" class="card-img-top" style="height: 300px; object-fit: cover;" />
     <div class="card-body">
-        <h2>@Model.Title</h2>
+        <!-- Başlık ve diğer bilgiler -->
+        <h2 class="card-title">@Model.Title</h2>
         <p><strong>Sanatçı:</strong> @Model.Artist</p>
         <p><strong>Albüm:</strong> @Model.Album</p>
         <p><strong>Tür:</strong> @Model.Genre</p>
+
+        <!-- Dinlenme sayısı -->
+        <p><strong>Dinlenme Sayısı:</strong> @Model.Plays</p>
+
+        <!-- Şarkı sözleri -->
         <p><strong>Şarkı Sözleri:</strong></p>
         <pre>@Model.Lyrics</pre>
+
+        <!-- Şarkı çalma -->
         <audio controls>
             <source src="~/@Model.FilePath" type="audio/mpeg">
             Tarayıcınız bu sesi desteklemiyor.
         </audio>
+
+        <!-- Geri dön butonu -->
         <br />
         <a asp-action="Index" class="btn btn-primary mt-3">Geri Dön</a>
     </div>

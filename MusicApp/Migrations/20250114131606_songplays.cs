@@ -5,25 +5,25 @@
 namespace MusicApp.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIsEmailConfirmedToUsers : Migration
+    public partial class songplays : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "IsEmailConfirmed",
-                table: "Users",
-                type: "bit",
+            migrationBuilder.AddColumn<int>(
+                name: "Plays",
+                table: "Songs",
+                type: "int",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "IsEmailConfirmed",
-                table: "Users");
+                name: "Plays",
+                table: "Songs");
         }
     }
 }

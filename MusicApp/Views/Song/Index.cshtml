@@ -16,6 +16,7 @@
             <th>Başlık</th>
             <th>Sanatçı</th>
             <th>Albüm</th>
+            <th>Dinlenme Sayısı</th>
             <th>Dinle</th>
             <th>Favoriler</th>
             <th>Çalma Listesi</th>
@@ -25,26 +26,41 @@
         @foreach (var song in Model)
         {
             <tr>
+                <!-- Şarkı Detay Sayfası -->
                 <td>
                     <a asp-controller="Song" asp-action="Details" asp-route-id="@song.Id">
                         <img src="~/@song.CoverImagePath" alt="@song.Title" class="cover-image" />
                     </a>
                 </td>
+
+                <!-- Şarkı Başlığı -->
                 <td>@song.Title</td>
+
+                <!-- Sanatçı -->
                 <td>@song.Artist</td>
+
+                <!-- Albüm -->
                 <td>@song.Album</td>
+
+                <!-- Dinlenme Sayısı -->
+                <td>@song.Plays</td> <!-- Dinlenme sayısını burada gösteriyoruz -->
+                <!-- Dinle -->
                 <td>
                     <audio controls>
                         <source src="~/@song.FilePath" type="audio/mpeg">
                         Tarayıcınız bu sesi desteklemiyor.
                     </audio>
                 </td>
+
+                <!-- Favorilere Ekle -->
                 <td>
                     <form method="post" asp-controller="Favorite" asp-action="AddToFavorites">
                         <input type="hidden" name="songId" value="@song.Id" />
                         <button type="submit" class="btn btn-primary">Favorilere Ekle</button>
                     </form>
                 </td>
+
+                <!-- Çalma Listesine Ekle -->
                 <td>
                     <form method="post" asp-controller="Playlist" asp-action="AddSong">
                         <input type="hidden" name="songId" value="@song.Id" />

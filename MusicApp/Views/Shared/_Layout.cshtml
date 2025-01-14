@@ -8,14 +8,12 @@
     <title>@ViewData["Title"] - MusicApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MusicApp.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <!-- Navbar Başlangıcı -->
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-blue border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">MusicApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MusicApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,7 +40,7 @@
                         @if (HttpContextAccessor.HttpContext.Session.GetString("Username") != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="Login" asp-action="Logout">Çıkış Yap (@HttpContextAccessor.HttpContext.Session.GetString("Username"))</a>
+                                <a class="nav-link text-light" asp-controller="Login" asp-action="Logout">Çıkış Yap</a>
                             </li>
                         }
                         else
@@ -55,7 +53,6 @@
                 </div>
             </div>
         </nav>
-        <!-- Navbar Sonu -->
     </header>
     <div class="container">
         <main role="main" class="pb-3">

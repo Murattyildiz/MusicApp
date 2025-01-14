@@ -45,31 +45,31 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Login}/{id?}");
 
-//// Veri tohumlama (admin kullanýcýsýný eklemek için)
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetRequiredService<MusicAppDbContext>();
+// Veri tohumlama (admin kullanýcýsýný eklemek için)
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<MusicAppDbContext>();
 
-//    if (!context.Users.Any(u => u.Username == "admin"))
-//    {
-//        var adminUser = new MusicApp.Models.User
-//        {
-//            Username = "admin",
-//            Email = "muratyildiz42953@gmail.com", // E-posta adresi düzeltildi
-//            Password = PasswordHelper.HashPassword("admin123"), // Þifreyi hashleyerek kaydediyoruz
-//            Role = "Admin",
-//            IsActive = true
-//        };
+    if (!context.Users.Any(u => u.Username == "admin"))
+    {
+        var adminUser = new MusicApp.Models.User
+        {
+            Username = "admin",
+            Email = "muratyildiz42953@gmail.com", // E-posta adresi düzeltildi
+            Password = PasswordHelper.HashPassword("admin123"), // Þifreyi hashleyerek kaydediyoruz
+            Role = "Admin",
+            IsActive = true
+        };
 
-//        context.Users.Add(adminUser);
-//        context.SaveChanges();
-//        Console.WriteLine("Admin kullanýcýsý baþarýyla oluþturuldu.");
-//    }
-//    else
-//    {
-//        Console.WriteLine("Admin kullanýcýsý zaten mevcut.");
-//    }
-//}
+        context.Users.Add(adminUser);
+        context.SaveChanges();
+        Console.WriteLine("Admin kullanýcýsý baþarýyla oluþturuldu.");
+    }
+    else
+    {
+        Console.WriteLine("Admin kullanýcýsý zaten mevcut.");
+    }
+}
 
-// Uygulamayý çalýþtýr
+
 app.Run();

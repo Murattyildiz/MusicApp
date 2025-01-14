@@ -11,8 +11,8 @@ using MusicApp.Data;
 namespace MusicApp.Migrations
 {
     [DbContext(typeof(MusicAppDbContext))]
-    [Migration("20250112131411_AddIsEmailConfirmedToUsers")]
-    partial class AddIsEmailConfirmedToUsers
+    [Migration("20250114125714_olusturma")]
+    partial class olusturma
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,11 +108,19 @@ namespace MusicApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CoverImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lyrics")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -137,7 +145,7 @@ namespace MusicApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsEmailConfirmed")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Password")
