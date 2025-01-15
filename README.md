@@ -47,9 +47,27 @@ Bu projede aşağıdaki araçlar ve teknolojiler kullanılmıştır:
 Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 
 1. **Depoyu Klonlayın**:
+   Projeyi kendi bilgisayarınıza klonlamak için aşağıdaki komutu kullanın:
    ```bash
-   git clone https://github.com/kullaniciadi/musicapp.git
+   git clone https://github.com/murattyildiz/musicapp.git
 
+Veritabanı Bağlantısını Yapılandırın: MusicAppDbContext bağlantı dizesi (Connection String) ve veritabanı yapılandırmasını appsettings.json dosyasında yapmanız gerekmektedir.
+appsettings.json dosyasını açın ve veritabanı bağlantı dizesini kendi ortamınıza göre düzenleyin. Örnek bir bağlantı dizesi şu şekilde olabilir:
+
+{
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=localhost;Database=MusicAppDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+}
+
+Bağlantı dizesini ve veritabanı yapılandırmalarını kendi SQL Server veya veritabanı sunucunuz ile uyumlu olacak şekilde değiştirin.
+
+# Uygulanacak Komutlar
+ dotnet ef migrations add mig
+dotnet ef database update
+komutlarını uygulayın.Bu adımlarla proje kolayca kurulup çalıştırılabilirsiniz.
+
+## Proje Görselleri
 
 # Kullanıcı Kısmı
 
