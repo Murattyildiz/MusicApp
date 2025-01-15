@@ -1,4 +1,55 @@
-# MusicApp
+# MusicApp - Müzik Uygulaması
+
+MusicApp, kullanıcıların müzik dinleme, favorilere ekleme ve çalma listeleri oluşturma gibi işlemleri yapabildiği bir web uygulamasıdır. Kullanıcılar, şarkıları dinleyebilir, şarkı detaylarına göz atabilir ve şarkıları favorilerine ekleyebilir. Ayrıca, kullanıcılar farklı çalma listeleri oluşturup bu listelere şarkılar ekleyebilir.
+
+## Proje Hakkında
+
+Bu proje, müzik dinleme uygulaması geliştirmenin yanı sıra, kullanıcı etkileşimini artırmak için çeşitli özelliklere sahiptir:
+- Şarkıları dinleyin
+- Favorilere ekleyin
+- Çalma listeleri oluşturun ve şarkıları ekleyin
+- Şarkıları başlık, sanatçı veya albüm adına göre arayın
+- Şarkı dinlendiğinde dinlenme sayısını artırma özelliği
+
+## Kullanılan Araçlar ve Teknolojiler
+
+Bu projede aşağıdaki araçlar ve teknolojiler kullanılmıştır:
+
+- **ASP.NET Core MVC**: Web uygulamasının temel yapısını oluşturmak için kullanıldı.
+- **Entity Framework Core**: Veritabanı işlemleri ve modelleme için kullanıldı.
+- **SQL Server**: Veritabanı olarak kullanıldı.
+- **HTML/CSS**: Kullanıcı arayüzünü geliştirmek için temel web teknolojileri.
+- **jQuery**: Dinlenme sayısını artırmak için Ajax ile etkileşim sağlamak amacıyla kullanıldı.
+- **Bootstrap**: UI bileşenlerini hızlıca geliştirmek için kullanıldı.
+- **JavaScript**: Dinlenme sayısının artırılması için Ajax çağrıları ve dinleme kontrolleri için kullanıldı.
+
+## Proje Özellikleri
+
+### 1. **Kullanıcı Girişi ve Kayıt**
+- Kullanıcılar sisteme giriş yapabilir veya yeni bir hesap oluşturabilir.
+- Giriş yaptıktan sonra kullanıcı, profil bilgilerini görüntüleyebilir ve düzenleyebilir.
+
+### 2. **Şarkı Dinleme**
+- Şarkılar listelenebilir ve kullanıcılar şarkıları dinleyebilir.
+- Dinlenen şarkıların **dinlenme sayısı** artırılır.
+
+### 3. **Favorilere Ekleme**
+- Kullanıcılar beğendikleri şarkıları favorilerine ekleyebilir.
+
+### 4. **Çalma Listeleri**
+- Kullanıcılar birden fazla **çalma listesi** oluşturabilir ve şarkıları bu listelere ekleyebilir.
+
+### 5. **Arama**
+- Kullanıcılar şarkıları **başlık, sanatçı, albüm** adıyla arayabilir.
+
+## Kurulum ve Çalıştırma
+
+Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
+
+1. **Depoyu Klonlayın**:
+   ```bash
+   git clone https://github.com/kullaniciadi/musicapp.git
+
 
 # Kullanıcı Kısmı
 
