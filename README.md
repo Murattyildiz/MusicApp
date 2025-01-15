@@ -44,7 +44,7 @@ Bu projede aşağıdaki araçlar ve teknolojiler kullanılmıştır:
 
 ## Kurulum ve Çalıştırma
 
-Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
+Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz
 
 1. **Depoyu Klonlayın**:
    Projeyi kendi bilgisayarınıza klonlamak için aşağıdaki komutu kullanın:
