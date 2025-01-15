@@ -15,7 +15,7 @@ namespace MusicApp.Controllers
         }
 
         // Şarkıların Listelendiği Sayfa
-        public IActionResult Index()
+        public IActionResult Index(string searchQuery)
         {
             // Oturum kontrolü
             var username = HttpContext.Session.GetString("Username");
@@ -28,8 +28,12 @@ namespace MusicApp.Controllers
             var user = _context.Users.SingleOrDefault(u => u.Username == username);
             if (user == null) return RedirectToAction("Login", "Login");
 
-            // Şarkıları getir
-            var songs = _context.Songs.ToList();
+            // Arama işlemi
+            var songs = string.IsNullOrEmpty(searchQuery)
+                ? _context.Songs.ToList()  // Arama yapılmadığında tüm şarkıları getir
+                : _context.Songs
+                    .Where(s => s.Title.Contains(searchQuery) || s.Artist.Contains(searchQuery) || s.Album.Contains(searchQuery))  // Arama yapılırken şarkı başlıkları, sanatçılar ve albümler arasında arama yapılır
+                    .ToList();
 
             // Kullanıcıya ait çalma listelerini getir
             var playlists = _context.Playlists.Where(p => p.UserId == user.Id).ToList();

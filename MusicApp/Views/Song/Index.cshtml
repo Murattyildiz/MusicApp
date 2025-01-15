@@ -9,7 +9,13 @@
 
 <h2>Şarkılar</h2>
 
-<table class="songs-table">
+<!-- Arama Formu (opsiyonel) -->
+<form method="get" asp-action="Index">
+    <input type="text" name="searchQuery" placeholder="Şarkı Ara..." class="form-control" />
+    <button type="submit" class="btn btn-primary mt-2">Ara</button>
+</form>
+
+<table class="songs-table mt-4">
     <thead>
         <tr>
             <th>Detay Sayfası</th>
