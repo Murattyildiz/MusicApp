@@ -73,7 +73,7 @@ komutlarını uygulayın.Bu adımlarla proje kolayca kurulup çalıştırılabil
 # Kullanıcı Kısmı
 
 ## Şarkılar Listesi
-![resim1](https://github.com/user-attachments/assets/ff8f58da-5fe2-45a4-a4d5-af7b9ec7c4b1)
+![resim](https://github.com/user-attachments/assets/60110102-d525-47a9-b2b8-2e6ea1cf6444)
 
 ## Şarkı detay Sayfası
 ![resim5](https://github.com/user-attachments/assets/cffae9cf-4bbb-4ed3-b95c-761888d4a054)
