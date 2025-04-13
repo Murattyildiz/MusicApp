@@ -5,15 +5,16 @@
 }
 
 <!-- CSS Dosyasını Bağlama -->
-<link rel="stylesheet" href="/css/songs.css">
+<link rel="stylesheet" href="/css/songs.css?v=1.1">
 
 <h2>Şarkılar</h2>
 
 <!-- Arama Formu (opsiyonel) -->
-<form method="get" asp-action="Index">
+<form method="get" asp-action="Index" class="d-flex align-items-center gap-2 mb-4">
     <input type="text" name="searchQuery" placeholder="Şarkı Ara..." class="form-control" />
-    <button type="submit" class="btn btn-primary mt-2">Ara</button>
+    <button type="submit" class="btn btn-primary">Ara</button>
 </form>
+
 
 <table class="songs-table mt-4">
     <thead>
