@@ -1,4 +1,5 @@
 # MusicApp - Müzik Uygulaması
+# Projenin tasarım kısımları daha modern bir yapıya dönüştürülecektir.Yapıldıktan sonra Bu kısım güncellenecek.
 
 MusicApp, kullanıcıların müzik dinleme, favorilere ekleme ve çalma listeleri oluşturma gibi işlemleri yapabildiği bir web uygulamasıdır. Kullanıcılar, şarkıları dinleyebilir, şarkı detaylarına göz atabilir ve şarkıları favorilerine ekleyebilir. Ayrıca, kullanıcılar farklı çalma listeleri oluşturup bu listelere şarkılar ekleyebilir.
 
