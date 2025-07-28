@@ -1,0 +1,55 @@
+﻿@model List<MusicApp.Models.Song>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>En Çok Dinlenen Şarkılar - MusicApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        .song-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+            .song-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+
+        .song-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .song-info {
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">🎵 En Çok Dinlenen Şarkılar</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var song in Model)
+            {
+                <div class="col">
+                    <div class="card song-card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title song-title">@song.Title</h5>
+                            <p class="card-text song-info">Sanatçı: @song.Artist</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <small class="text-muted">👁️ Dinlenme Sayısı: @song.Plays</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿/* Genel Arka Plan Tasarımı */
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)), url('/images/ArkaPlan.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* Profil Sayfası Konteyneri */
+.container {
+    max-width: 80%;
+    align-content: center;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: rgba(32, 32, 32, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Başlıklar */
+.profile-title {
+    font-size: 2.75rem;
+    background: linear-gradient(45deg, #00b4d8, #90e0ef);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    color: #90e0ef;
+    margin: 2.5rem 0 1.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 70%;
+        background: #00b4d8;
+        border-radius: 4px;
+    }
+
+/* Form Grubu */
+.form-group {
+    margin-bottom: 1.75rem;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    color: #c0c0c0;
+    margin-bottom: 0.75rem;
+}
+
+    label i {
+        color: #00b4d8;
+        font-size: 1.2rem;
+    }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #00b4d8;
+    box-shadow: 0 0 12px rgba(0, 180, 216, 0.25);
+    outline: none;
+}
+
+/* Buton Tasarımı */
+button {
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #00b4d8 0%, #90e0ef 100%);
+    border: none;
+    border-radius: 10px;
+    color: #1a1a1a;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 180, 216, 0.3);
+    }
+
+/* Mesajlar */
+.success-message,
+.error-message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border: 1px solid transparent;
+}
+
+.success-message {
+    background: rgba(40, 167, 69, 0.15);
+    border-color: rgba(40, 167, 69, 0.3);
+    color: #28a745;
+}
+
+.error-message {
+    background: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .profile-title {
+        font-size: 2.25rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.75rem 1rem;
+    }
+}

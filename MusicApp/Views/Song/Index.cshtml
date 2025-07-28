@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MusicApp.Models.Song>
+
+@{
+    ViewData["Title"] = "Şarkılar";
+}
+
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/songs.css?v=1.1">
+
+<h2>Şarkılar</h2>
+
+<!-- Arama Formu (opsiyonel) -->
+<form method="get" asp-action="Index" class="d-flex align-items-center gap-2 mb-4">
+    <input type="text" name="searchQuery" placeholder="Şarkı Ara..." class="form-control" />
+    <button type="submit" class="btn btn-primary">Ara</button>
+</form>
+
+
+<table class="songs-table mt-4">
+    <thead>
+        <tr>
+            <th>Detay Sayfası</th>
+            <th>Başlık</th>
+            <th>Sanatçı</th>
+            <th>Albüm</th>
+            <th>Dinlenme Sayısı</th>
+            <th>Dinle</th>
+            <th>Favoriler</th>
+            <th>Çalma Listesi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Song" asp-action="Details" asp-route-id="@song.Id">
+                        <img src="~/@song.CoverImagePath" alt="@song.Title" class="cover-image" />
+                    </a>
+                </td>
+
+                <!-- Şarkı Başlığı -->
+                <td>@song.Title</td>
+
+                <!-- Sanatçı -->
+                <td>@song.Artist</td>
+
+                <!-- Albüm -->
+                <td>@song.Album</td>
+
+                <!-- Dinlenme Sayısı -->
+                <td>@song.Plays</td> <!-- Dinlenme sayısını burada gösteriyoruz -->
+                <!-- Dinle -->
+                <td>
+                    <audio controls onplay="incrementPlays(@song.Id)">
+                        <source src="~/@song.FilePath" type="audio/mpeg">
+                        Tarayıcınız bu sesi desteklemiyor.
+                    </audio>
+                </td>
+
+                <!-- Favorilere Ekle -->
+                <td>
+                    <form method="post" asp-controller="Favorite" asp-action="AddToFavorites">
+                        <input type="hidden" name="songId" value="@song.Id" />
+                        <button type="submit" class="btn btn-primary">Favorilere Ekle</button>
+                    </form>
+                </td>
+
+                <!-- Çalma Listesine Ekle -->
+                <td>
+                    <form method="post" asp-controller="Playlist" asp-action="AddSong">
+                        <input type="hidden" name="songId" value="@song.Id" />
+                        <select name="playlistId" required class="playlist-select">
+                            <option value="">Çalma Listesi Seç</option>
+                            @foreach (var playlist in ViewBag.Playlists as IEnumerable<MusicApp.Models.Playlist>)
+                            {
+                                <option value="@playlist.Id">@playlist.Name</option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-secondary">Listeye Ekle</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    // Dinlenme sayısını artırmak için Ajax çağrısı
+    function incrementPlays(songId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("IncrementPlays", "Song")',
+            data: { songId: songId },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Dinlenme sayısı artırıldı.");
+                } else {
+                    console.log("Bir hata oluştu.");
+                }
+            }
+        });
+    }
+</script>

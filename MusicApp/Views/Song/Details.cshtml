@@ -1,0 +1,49 @@
+﻿@model MusicApp.Models.Song
+
+@{
+    ViewData["Title"] = "Şarkı Detayları";
+}
+
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/song-details.css">
+
+<div class="card mt-3">
+    <img src="~/@Model.CoverImagePath" alt="@Model.Title" class="card-img-top" style="height: 300px; object-fit: cover;" />
+    <div class="card-body">
+        <h2 class="card-title">@Model.Title</h2>
+        <p><strong>Sanatçı:</strong> @Model.Artist</p>
+        <p><strong>Albüm:</strong> @Model.Album</p>
+        <p><strong>Tür:</strong> @Model.Genre</p>
+        <p><strong>Dinlenme Sayısı:</strong> @Model.Plays</p>
+
+        <p><strong>Şarkı Sözleri:</strong></p>
+        <pre>@Model.Lyrics</pre>
+
+        <!-- Dinle -->
+        <audio controls onplay="incrementPlays(@Model.Id)">
+            <source src="~/@Model.FilePath" type="audio/mpeg">
+            Tarayıcınız bu sesi desteklemiyor.
+        </audio>
+
+        <br />
+        <a asp-action="Index" class="btn btn-primary mt-3">Geri Dön</a>
+    </div>
+</div>
+
+<script>
+    // Dinlenme sayısını artırmak için Ajax çağrısı
+    function incrementPlays(songId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("IncrementPlays", "Song")',
+            data: { songId: songId },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Dinlenme sayısı artırıldı.");
+                } else {
+                    console.log("Bir hata oluştu.");
+                }
+            }
+        });
+    }
+</script>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MusicApp.Models.Song>
+
+@{
+    ViewData["Title"] = "Admin Panel - Şarkılar";
+    Layout = "_AdminLayout";
+}
+
+<h2>Şarkılar</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Detay sayfası</th>
+            <th>Başlık</th>
+            <th>Sanatçı</th>
+            <th>Albüm</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/@song.CoverImagePath" alt="@song.Title" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                </td>
+                <td>@song.Title</td>
+                <td>@song.Artist</td>
+                <td>@song.Album</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@song.Id" class="btn btn-warning">Düzenle</a>
+                    <a asp-action="Delete" asp-route-id="@song.Id" class="btn btn-danger" onclick="return confirm('Bu şarkıyı silmek istediğinizden emin misiniz?');">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary mt-3">Yeni Şarkı Ekle</a>

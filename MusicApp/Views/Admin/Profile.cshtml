@@ -1,0 +1,34 @@
+﻿@model MusicApp.Models.User
+
+@{
+    ViewData["Title"] = "Profilim";
+    Layout = "_AdminLayout"; // Admin'e özel bir layout kullanıyorsanız, bunu belirtin.
+}
+
+<h2>Profilim</h2>
+
+<div class="card mt-3"> 
+    <div class="card-header bg-dark text-white">
+        <h4>@Model.Username</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Kullanıcı Adı:</strong> @Model.Username</p>
+        <p><strong>E-posta:</strong> @Model.Email</p>
+        <p><strong>Rol:</strong> @Model.Role</p>
+        <p>
+            <strong>Durum:</strong>
+            @if (Model.IsActive)
+            {
+                <span class="text-success">Aktif</span>
+            }
+            else
+            {
+                <span class="text-danger">Pasif</span>
+            }
+        </p>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Index" class="btn btn-primary">Geri Dön</a>
+        <a asp-action="Logout" asp-controller="Login" class="btn btn-danger">Çıkış Yap</a>
+    </div>
+</div>

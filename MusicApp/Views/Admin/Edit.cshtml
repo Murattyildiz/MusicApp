@@ -1,0 +1,77 @@
+﻿@model MusicApp.Models.Song
+
+@{
+    ViewData["Title"] = "Şarkı Düzenle";
+    Layout = "_AdminLayout";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Edit" class="needs-validation" novalidate>
+    <input type="hidden" name="Id" value="@Model.Id" />
+
+    <div class="mb-3">
+        <label for="Title" class="form-label">Başlık</label>
+        <input type="text" id="Title" name="Title" class="form-control" value="@Model.Title" required />
+        <div class="invalid-feedback">Başlık alanı zorunludur.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="Artist" class="form-label">Sanatçı</label>
+        <input type="text" id="Artist" name="Artist" class="form-control" value="@Model.Artist" required />
+        <div class="invalid-feedback">Sanatçı alanı zorunludur.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="Album" class="form-label">Albüm</label>
+        <input type="text" id="Album" name="Album" class="form-control" value="@Model.Album" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Genre" class="form-label">Tür</label>
+        <input type="text" id="Genre" name="Genre" class="form-control" value="@Model.Genre" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Lyrics" class="form-label">Şarkı Sözleri</label>
+        <textarea id="Lyrics" name="Lyrics" class="form-control" rows="5">@Model.Lyrics</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="File" class="form-label">Şarkı Dosyası</label>
+        <input type="file" id="File" name="File" class="form-control" />
+        @if (!string.IsNullOrEmpty(Model.FilePath))
+        {
+            <p>Mevcut dosya: <a href="~/@Model.FilePath" target="_blank">Şarkıyı Dinle</a></p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label for="CoverImage" class="form-label">Kapak Fotoğrafı</label>
+        <input type="file" id="CoverImage" name="CoverImage" class="form-control" />
+        @if (!string.IsNullOrEmpty(Model.CoverImagePath))
+        {
+            <p>Mevcut kapak: <img src="~/@Model.CoverImagePath" alt="Kapak Fotoğrafı" class="img-thumbnail" style="width: 150px; height: 150px;" /></p>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</form>
+
+@* <script>
+    // Form doğrulama (Bootstrap)
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script> *@

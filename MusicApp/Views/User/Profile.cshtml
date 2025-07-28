@@ -1,0 +1,70 @@
+﻿@model MusicApp.Models.User
+
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/css/profile.css?v=1.1">
+
+<div class="container">
+    <h2 class="profile-title">PROFİL YÖNETİMİ</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="success-message">@ViewBag.Message</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="error-message">@ViewBag.Error</div>
+    }
+
+    <!-- BİLGİLERİM -->
+    <form method="post" asp-controller="User" asp-action="UpdateProfile">
+        <h3 class="section-title">Hesap Bilgileri</h3>
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="form-group">
+            <label for="username">
+                <i class="fas fa-user-astronaut"></i>
+                Kullanıcı Adı
+            </label>
+            <input type="text" name="username" id="username" value="@Model.Username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">
+                <i class="fas fa-envelope-open-text"></i>
+                E-posta Adresi
+            </label>
+            <input type="email" name="email" id="email" value="@Model.Email" required>
+        </div>
+
+        <button type="submit">Güncelle <i class="fas fa-sync-alt"></i></button>
+    </form>
+
+    <!-- ŞİFRE DEĞİŞTİR -->
+    <form method="post" asp-controller="User" asp-action="UpdatePassword">
+        <h3 class="section-title">Güvenlik Ayarları</h3>
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="form-group">
+            <label for="currentPassword">
+                <i class="fas fa-lock"></i>
+                Mevcut Şifre
+            </label>
+            <input type="password" name="currentPassword" id="currentPassword" required>
+        </div>
+
+        <div class="form-group">
+            <label for="newPassword">
+                <i class="fas fa-lock-open"></i>
+                Yeni Şifre
+            </label>
+            <input type="password" name="newPassword" id="newPassword" required>
+        </div>
+
+        <button type="submit">Şifreyi Değiştir <i class="fas fa-shield-alt"></i></button>
+    </form>
+</div>

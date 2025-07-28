@@ -1,0 +1,61 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.playlist-title {
+    text-align: center;
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.no-songs {
+    text-align: center;
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.playlist-table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .playlist-table thead {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+    }
+
+    .playlist-table th,
+    .playlist-table td {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #dee2e6;
+    }
+
+    .playlist-table th {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .playlist-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .playlist-table tr:hover {
+        background-color: #e9ecef;
+    }
+
+audio {
+    width: 100%;
+    margin-top: 5px;
+}

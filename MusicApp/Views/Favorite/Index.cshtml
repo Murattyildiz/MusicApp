@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MusicApp.Models.Song>
+
+@{
+    ViewData["Title"] = "Favorilerim";
+}
+
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/favorites.css">
+
+<h2>Favorilerim</h2>
+
+@if (!Model.Any())
+{
+    <p class="no-favorites">Henüz favorilere eklenmiş bir şarkınız yok.</p>
+}
+else
+{
+    <table class="favorites-table">
+        <thead>
+            <tr>
+                <th>Başlık</th>
+                <th>Sanatçı</th>
+                <th>Albüm</th>
+                <th>Dinle</th>
+                <th>Kaldır</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var song in Model)
+            {
+                <tr>
+                    <td>@song.Title</td>
+                    <td>@song.Artist</td>
+                    <td>@song.Album</td>
+                    <td>
+                        <audio controls>
+                            <source src="~/@song.FilePath" type="audio/mpeg">
+                            Tarayıcınız bu sesi desteklemiyor.
+                        </audio>
+                    </td>
+                    <td>
+                        <form method="post" asp-controller="Favorite" asp-action="RemoveFromFavorites">
+                            <input type="hidden" name="favoriteId" value="@song.Id" />
+                            <button type="submit" class="btn-remove">Kaldır</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,52 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Navbar için mavi arka plan rengi */
+.navbar {
+    background-color: #007bff; /* Mavi renk */
+    color: white;
+}
+
+    .navbar a.nav-link {
+        color: white; /* Linklerin beyaz renkte görünmesi */
+        transition: color 0.3s, background-color 0.3s; /* Renk ve arka plan geçiþ efektleri */
+    }
+
+        .navbar a.nav-link:hover {
+            color: #ffc107; /* Linklerin üzerine gelince sarý renk */
+            background-color: rgba(255, 193, 7, 0.1); /* Hoverda arka plan rengi sarýmsý */
+        }
+
+        /* Navbar linklerine odaklanma ve aktif olma durumlarý */
+        .navbar a.nav-link:focus {
+            box-shadow: 0 0 0 0.2rem rgba(37, 117, 252, 0.5); /* Focus durumunda mavi renkte bir kutu gölgesi */
+        }
+
+/* Navbar'daki metinlerin rengini beyaz yapalým */
+.navbar-brand {
+    color: white;
+}
+
+    .navbar-brand:hover {
+        color: #ffc107; /* Hover durumunda sarý renk */
+    }

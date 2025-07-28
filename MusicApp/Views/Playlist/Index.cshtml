@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MusicApp.Models.Playlist>
+
+@{
+    ViewData["Title"] = "Çalma Listelerim";
+}
+
+<!-- CSS Dosyasını Bağlama -->
+<link rel="stylesheet" href="/css/playlists.css">
+
+<h2 class="page-title">Çalma Listelerim</h2>
+
+<div class="create-playlist-form">
+    <form method="post" asp-controller="Playlist" asp-action="Create">
+        <input type="text" name="playlistName" placeholder="Yeni Çalma Listesi Adı" class="form-input" required />
+        <button type="submit" class="btn btn-primary">Oluştur</button>
+    </form>
+</div>
+
+<table class="playlists-table">
+    <thead>
+        <tr>
+            <th>Çalma Listesi Adı</th>
+            <th>Detaylar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var playlist in Model)
+        {
+            <tr>
+                <td>@playlist.Name</td>
+                <td>
+                    <a asp-controller="Playlist" asp-action="Details" asp-route-id="@playlist.Id" class="btn btn-secondary">Detaylar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
