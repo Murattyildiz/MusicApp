@@ -1,17 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Models;
+<<<<<<< HEAD
 using MusicApp.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+=======
+using MusicApp.Data; // DbContext'in doðru import edilmesi gerekir
+using System.Linq;
+>>>>>>> a8992dcc3d1d2726c590c43ccae51b59f3688166
 
 namespace MusicApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+<<<<<<< HEAD
         private readonly MusicAppDbContext _context;
         private readonly IHttpClientFactory _clientFactory;
 
@@ -20,10 +26,19 @@ namespace MusicApp.Controllers
             _logger = logger;
             _context = context;
             _clientFactory = clientFactory;
+=======
+        private readonly MusicAppDbContext _context;  // DbContext'i buraya ekliyoruz
+
+        public HomeController(ILogger<HomeController> logger, MusicAppDbContext context)
+        {
+            _logger = logger;
+            _context = context;
+>>>>>>> a8992dcc3d1d2726c590c43ccae51b59f3688166
         }
 
         public IActionResult Index()
         {
+<<<<<<< HEAD
             var mostPlayedSongs = _context.Songs
                                           .OrderByDescending(s => s.Plays)
                                           .Take(5)
@@ -83,4 +98,16 @@ namespace MusicApp.Controllers
         public List<Song> Recommendations { get; set; }
     }
 
+=======
+            // En çok dinlenen þarkýlarý alýyoruz (Plays'e göre sýralama)
+            var mostPlayedSongs = _context.Songs
+                                          .OrderByDescending(s => s.Plays)  // Plays sayýsýna göre azalan sýralama
+                                          .Take(5)  // Ýlk 5 þarkýyý alýyoruz
+                                          .ToList();
+
+            // View'a gönderilecek model
+            return View(mostPlayedSongs);  // `mostPlayedSongs` ile view'ý döndürüyoruz
+        }
+    }
+>>>>>>> a8992dcc3d1d2726c590c43ccae51b59f3688166
 }

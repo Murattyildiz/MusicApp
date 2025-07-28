@@ -16,17 +16,16 @@ namespace MusicApp.Controllers
             _context = context;
         }
 
-        // Action çalıştırılmadan önce admin kontrolü
-        //public override void OnActionExecuting(ActionExecutingContext context)
-        //{
-        //    var role = HttpContext.Session.GetString("Role");
-        //    if (role != "Admin")
-        //    {
-        //        context.Result = RedirectToAction("Login", "Login");
-        //    }
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            var role = HttpContext.Session.GetString("Role");
+            if (role != "Admin")
+            {
+                context.Result = RedirectToAction("Login", "Login");
+            }
 
-        //    base.OnActionExecuting(context);
-        //}
+            base.OnActionExecuting(context);
+        }
 
         // Admin Paneli Ana Sayfası
         public IActionResult Index()

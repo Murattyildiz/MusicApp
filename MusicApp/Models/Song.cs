@@ -11,5 +11,6 @@
         public string CoverImagePath { get; set; } 
         public string Lyrics { get; set; } 
         public int Plays { get; set; } 
+
     }
 }

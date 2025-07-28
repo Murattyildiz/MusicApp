@@ -17,7 +17,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+<<<<<<< HEAD
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+=======
+>>>>>>> a8992dcc3d1d2726c590c43ccae51b59f3688166
   </ItemGroup>
 
   <ItemGroup>
