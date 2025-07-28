@@ -16,7 +16,6 @@ namespace MusicApp.Controllers
             _context = context;
         }
 
-        // Action çalıştırılmadan önce admin kontrolü
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var role = HttpContext.Session.GetString("Role");

@@ -33,7 +33,6 @@
         @foreach (var song in Model)
         {
             <tr>
-                <!-- Şarkı Detay Sayfası -->
                 <td>
                     <a asp-controller="Song" asp-action="Details" asp-route-id="@song.Id">
                         <img src="~/@song.CoverImagePath" alt="@song.Title" class="cover-image" />

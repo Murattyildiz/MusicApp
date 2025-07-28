@@ -19,6 +19,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true; // Çerezin zorunlu olduðunu belirt
 });
 
+builder.Services.AddHttpClient();
+
 // MVC servislerini ekle
 builder.Services.AddControllersWithViews();
 

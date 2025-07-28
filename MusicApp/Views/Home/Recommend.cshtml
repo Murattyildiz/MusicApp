@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Recommend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Şarkı Önerisi Al</h2>
+
+<button id="getRecommendationBtn">Şarkı Önerisi Al</button>
+
+<div id="recommendations" style="margin-top:20px;"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#getRecommendationBtn").click(function() {
+        $.ajax({
+            url: '@Url.Action("GetRecommendations", "Home")',
+            type: "GET",
+            success: function(data) {
+                if (data.success) {
+                    var html = "<ul>";
+                    data.recommendations.forEach(function(song) {
+                        html += "<li>" + song.Title + " - " + song.Artist + " (" + song.Genre + ")</li>";
+                    });
+                    html += "</ul>";
+                    $("#recommendations").html(html);
+                } else {
+                    $("#recommendations").html("<p>Öneri alınırken hata oluştu.</p>");
+                }
+            },
+            error: function() {
+                $("#recommendations").html("<p>İstek gönderilirken hata oluştu.</p>");
+            }
+        });
+    });
+</script>
+
