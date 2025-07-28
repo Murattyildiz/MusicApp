@@ -1,4 +1,4 @@
-# MusicApp - Müzik Uygulaması
+# MusicApp-ML - Müzik Uygulaması
 # Projenin tasarım kısımları daha modern bir yapıya dönüştürülecektir.Yapıldıktan sonra Bu kısım güncellenecek.
 
 MusicApp, kullanıcıların müzik dinleme, favorilere ekleme ve çalma listeleri oluşturma gibi işlemleri yapabildiği bir web uygulamasıdır. Kullanıcılar, şarkıları dinleyebilir, şarkı detaylarına göz atabilir ve şarkıları favorilerine ekleyebilir. Ayrıca, kullanıcılar farklı çalma listeleri oluşturup bu listelere şarkılar ekleyebilir.
@@ -81,6 +81,9 @@ komutlarını uygulayın.Bu adımlarla proje kolayca kurulup çalıştırılabil
 
 ## Favori Şarkılarım
 ![resim2](https://github.com/user-attachments/assets/3078b0f0-3e76-4fa5-9723-d4fe1716b901)
+
+## Şarkı Öner
+<img width="1919" height="929" alt="Ekran görüntüsü 2025-07-28 194536" src="https://github.com/user-attachments/assets/5a763e6e-a96f-40e7-9bd3-8c9dbe2c8da3" />
 
 ## Çalma Listelerim
 ![resim3](https://github.com/user-attachments/assets/969cc946-d6be-423d-a89f-ac051ba728a4)
